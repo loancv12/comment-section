@@ -1,0 +1,103 @@
+@use "variables" as *;
+@use "animation" as *;
+@use "mixins" as *;
+@use "global" as *;
+
+.type__com {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "textarea textarea textarea" "avatar  typebtns btnsend";
+  position: relative;
+
+  gap: 1.6rem;
+
+  background-color: hsl(0, 0%, 100%);
+  padding: 16px;
+  border-radius: 4px;
+  gap: 16px;
+
+  .com__content {
+    grid-area: textarea;
+    .textarea {
+      min-height: 80px;
+    }
+  }
+
+  .com__user {
+    grid-area: avatar;
+    align-items: flex-start;
+    img {
+      margin-right: 0;
+    }
+  }
+  .type-btns {
+    grid-area: typebtns;
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+  }
+  .btn--send {
+    grid-area: btnsend;
+    justify-self: flex-end;
+  }
+
+  .func-block {
+    padding: 10px;
+    label {
+      cursor: pointer;
+    }
+  }
+  .toggle-emoji-btn {
+    color: rgb(222, 192, 24);
+    float: right;
+    cursor: pointer;
+    transition: all ease-in-out 400ms;
+    &:hover {
+      color: rgb(205, 208, 11);
+    }
+  }
+  .func-tooltip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+  }
+  em-emoji-picker {
+    box-shadow: 0 0 6px 1px rgb(0 0 0 / 50%);
+  }
+  .upload-images {
+    background-color: $Verylightgray;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+  }
+
+  .upload-image {
+    position: relative;
+  }
+  .btn--remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #c9c9c9;
+    background-color: $White;
+    border-radius: 999px;
+
+    &:hover {
+      background-color: $Lightgray;
+    }
+  }
+  .upload-image img {
+    border-radius: 10px;
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
+  }
+
+  @include breakpoint-up(large) {
+    padding: 24px;
+  }
+}

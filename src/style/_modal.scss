@@ -1,0 +1,52 @@
+@use "variables" as *;
+@use "animation" as *;
+@use "mixins" as *;
+@use "global" as *;
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba($color: #000, $alpha: 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // display: none;
+  visibility: hidden;
+  opacity: 0;
+  &__open {
+    display: flex;
+    opacity: 1;
+  }
+
+  &__body {
+    background-color: $White;
+    border-radius: 4px;
+    padding: 27px 24px;
+    max-width: 343px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    .action {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    @include breakpoint-up(large) {
+      max-width: 400px;
+      padding: 34px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+  }
+  .btn--modal {
+    padding: 15px 30px;
+  }
+}

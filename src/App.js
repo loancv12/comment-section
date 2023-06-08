@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useContext } from "react";
+import ComCard from "./components/ComCard";
+import TypeCom from "./components/TypeCom";
+import { ComContext } from "./components/ComContext";
+import Modal from "./components/Modal";
 
 function App() {
+  const [state, dispatch, handleModal] = useContext(ComContext);
+  const { comments, currentUser } = state;
+  const getRep = (parentId) => {
+    const childCom = comments.filter((comment) => comment.parent === parentId);
+    return childCom;
+  };
+
+  // useEffect(() => {
+  //   const textareas = document.querySelectorAll(".textarea");
+  //   textareas.forEach((textarea) => {
+  //     textarea.style.height = textarea.scrollHeight + "px";
+  //   });
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="wrap">
+      <div className="container container--px container--py">
+        <div className="comments-container">
+          {comments.map(
+            (comment, index) =>
+              comment.parent === null && (
+                <ComCard
+                  key={index}
+                  currUser={currentUser}
+                  comment={comment}
+                  getRep={getRep}
+                />
+              )
+          )}
+        </div>
+        <div className="post-comments">
+          <TypeCom currUser={currentUser} />
+        </div>
+      </div>
+      <Modal handleModal={handleModal} />
+    </main>
   );
 }
 

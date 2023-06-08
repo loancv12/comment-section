@@ -1,0 +1,133 @@
+@use "variables" as *;
+@use "animation" as *;
+@use "mixins" as *;
+@use "global" as *;
+
+.com {
+  margin-bottom: 16px;
+  &__owner {
+    background-color: $White;
+    padding: 16px;
+    border-radius: 4px;
+    @include breakpoint-up(large) {
+      display: flex;
+      padding: 24px;
+      gap: 25px;
+    }
+  }
+  &__content {
+    //fix: flex child growing out of parent because of textarea
+    flex: 1 1 auto;
+    overflow: auto;
+    @include breakpoint-up(large) {
+      position: relative;
+    }
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .avatar {
+      height: 32px;
+      width: 32px;
+      border-radius: 999px;
+      margin-right: 16px;
+      display: inline-block;
+    }
+
+    .username {
+      margin-right: 8px;
+    }
+
+    .identify {
+      background-color: $Moderateblue;
+      color: $White;
+      font-size: 1.3rem;
+      line-height: 1;
+      padding: 3px 7px;
+      border-radius: 2px;
+    }
+
+    .time-post {
+      margin-left: 8px;
+    }
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0;
+  }
+  .vote {
+    max-height: 40px;
+    padding: 8px 12px;
+    background-color: $Verylightgray;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @include breakpoint-up(large) {
+      max-height: 98px;
+
+      padding: 8px 8px;
+      flex-direction: column;
+    }
+
+    .btn--vote:hover {
+      cursor: pointer;
+      svg path {
+        fill: $Moderateblue;
+      }
+    }
+
+    .score {
+      font-size: 1.8rem;
+      color: $Moderateblue;
+      font-weight: 500;
+      padding: 0 6px;
+    }
+  }
+  .reply {
+    @include breakpoint-up(large) {
+      margin-left: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+.desc {
+  margin: 20px 0;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  .tag {
+    color: $Moderateblue;
+    font-weight: 500;
+  }
+  @include breakpoint-up(large) {
+    margin-bottom: 0;
+  }
+}
+.desc-img {
+  max-width: 50%;
+  object-fit: cover;
+}
+
+.area-editing {
+  display: flex;
+  color: #67727e;
+  line-height: 1.5;
+  padding: 10px 15px;
+  border: 2px solid #eaecf1;
+  border-radius: 10px;
+  overflow: hidden;
+  resize: both;
+}
+
+.btn--update {
+  margin-left: auto;
+  margin-top: 16px;
+}
