@@ -101,8 +101,10 @@ function TypeCom({
     }
     textRef.current.focus();
   };
-  const toggleOpen = (className) => {
-    const funcElTooltip = document.querySelector(`.${className}`);
+  const toggleOpen = (e) => {
+    const typeComElParent = e.currentTarget.closest(".type__com");
+    const className = e.currentTarget.dataset.toggle;
+    const funcElTooltip = typeComElParent.querySelector(`.${className}`);
     if (funcElTooltip) {
       funcElTooltip.classList.toggle("hide");
     }
@@ -131,11 +133,7 @@ function TypeCom({
         ></textarea>
       </div>
       <div className="type-btns">
-        <div
-          className="func-block"
-          onClick={(e) => toggleOpen(e.currentTarget.dataset.toggle)}
-          data-toggle="emoji"
-        >
+        <div className="func-block" onClick={toggleOpen} data-toggle="emoji">
           <em-emoji
             shortcodes=":slightly_smiling_face:"
             class="toggle-emoji-btn"
